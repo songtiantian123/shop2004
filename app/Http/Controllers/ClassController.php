@@ -12,4 +12,7 @@ class ClassController extends Controller
     public function studebt(){
         // 班级
     }
+    public function teacher(){
+        // 讲师
+    }
 }
