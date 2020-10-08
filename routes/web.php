@@ -27,8 +27,10 @@ Route::get('student/index','StudentController@index');// 列表页面
 Route::get('student/destroy','StudentController@destroy');// 执行删除
 
 
-/** 商品表的增删改查*/
-Route::get('/shopa','ShopaController@shopa');
+/** DB操作数据库*/
+Route::get('/shop','ShopaController@shop');
+/** 模型操作数据库*/
+Route::get('/a','ShopController@a');
 
 
 /** 商品表的 注册*/
