@@ -33,11 +33,17 @@ Route::get('/shop','ShopController@shop');
 Route::get('/a','ShopController@a');
 
 
-/** 商品表的 注册*/
-Route::get('register/create','UserController@register');// 注册视图
-Route::post('register/registerDo','UserController@registerDo');// 执行注册
+/** 用户的 注册*/
+Route::get('user/regist','UserController@user');// 注册视图
+Route::post('user/registerDo','UserController@registerDo');// 执行注册
 
-/** 商品表的登录*/
-Route::get('login/login','LoginController@login');// 登录视图
+/** 用户的登录*/
+Route::get('user/login','UserController@login');// 登录视图
+Route::post('user/loginDo','UserController@loginDo');// 执行登录
+
+
+/** 商品*/
+Route::get('/goods/detail','GoodsController@detail');/** 商品详情*/
+Route::get('/goods/list','GoodsController@goodlist');/** 商品列表*/
 
 

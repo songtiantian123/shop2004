@@ -3,10 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-class ShopModel extends Model
+
+class UserModel extends Model
 {
     //表名
-    protected $table = 'shop';
-    protected $primaryKey = 'shop_id';
+    protected $table = 'user';
+    protected $primaryKey = 'user_id';
     public $timestamps = false;
 }
