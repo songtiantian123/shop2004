@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class ShopController extends Controller
+class ShopaController extends Controller
 {
-    public function shop(){
+    public function shopa(){
         //$shop = DB::table('shop')->get();
         // 从一张表中获取一行/一列
         //$shop_name = DB::table('shop')->where('shop_name','电视')->first();// 查询一个值

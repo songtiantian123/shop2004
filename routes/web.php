@@ -28,6 +28,14 @@ Route::get('student/destroy','StudentController@destroy');// 执行删除
 
 
 /** 商品表的增删改查*/
-Route::get('/shop','ShopController@shop');
+Route::get('/shopa','ShopaController@shopa');
+
+
+/** 商品表的 注册*/
+Route::get('register/create','UserController@register');// 注册视图
+Route::post('register/registerDo','UserController@registerDo');// 执行注册
+
+/** 商品表的登录*/
+Route::get('login/login','LoginController@login');// 登录视图
 
 
