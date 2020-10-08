@@ -28,7 +28,7 @@ Route::get('student/destroy','StudentController@destroy');// 执行删除
 
 
 /** DB操作数据库*/
-Route::get('/shop','ShopaController@shop');
+Route::get('/shop','ShopController@shop');
 /** 模型操作数据库*/
 Route::get('/a','ShopController@a');
 
