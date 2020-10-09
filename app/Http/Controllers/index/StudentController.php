@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\index\index;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Flight;
-use DB;
 class StudentController extends Controller{
     /** 添加视图*/
     public function student(){

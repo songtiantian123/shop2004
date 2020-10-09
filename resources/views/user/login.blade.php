@@ -11,11 +11,15 @@
   <table>
       <tr>
           <td>用户名</td>
-          <td><input type="text" name="last_login"></td>
+          <td><input type="text" placeholder="用户名/Email/手机号" name="user_name"></td>
       </tr>
       <tr>
           <td>密码</td>
           <td><input type="password" name="password"></td>
+      </tr>
+      <tr>
+          <td>确认密码</td>
+          <td><input type="password" name="pwd"></td>
       </tr>
       <tr>
           <td></td>
