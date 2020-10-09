@@ -23,6 +23,7 @@ Route::get('/info',function(){
     phpinfo();
 });
 
+
 Route::get('hello/create','index\TestController@hello');
 
 
@@ -32,12 +33,11 @@ Route::post('student/store','index\StudentController@store');// 执行添加
 Route::get('student/index','index\StudentController@index');// 列表页面
 Route::get('student/destroy','index\StudentController@destroy');// 执行删除
 
-
 /** DB操作数据库*/
 Route::get('/shop','index\ShopController@shop');
 /** 模型操作数据库*/
 Route::get('/a','index\ShopController@a');
-
+Route::get('/text','index\TextController@text');
 
 /** 用户的 注册*/
 Route::get('user/regist','index\UserController@user');// 注册视图
