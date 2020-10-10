@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\index;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 use App\Model\UserModel;
 
@@ -27,6 +28,8 @@ class UserController extends Controller{
     }
     /** 执行登录*/
     public function loginDo(Request $request){
+        // 得到当前用户的真实id
+        $ip = $request->getClientIp();
         $user_name = $request->input('user_name');
         $user_pass = $request->input('user_pass1');
         $key = 'login:count:'.$user_name;
@@ -42,7 +45,10 @@ class UserController extends Controller{
             ->orWhere(['tel'=>$user_name])
             ->first();
         if(!$res){
-            die('用户不存在');
+            return redirect('regist/login')->with(['msg'=>'你输入的账号或密码有误']);
+        }
+        if(is_object($res)){
+            $res = $res->toArray();
         }
         $p = password_verify($user_pass,$res->password);
         if(!$p){
@@ -52,5 +58,16 @@ class UserController extends Controller{
             die;
         }
         // 密码正确
+
+        $ten_minute = 10 * 60;
+        if(time()>Redis::get('right_login' .$res['uid'])){
+            /** 错误时间大于当前时间-10min*/
+            if(Re){}
+        }
+
+
+
+
+
     }
 }
