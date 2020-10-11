@@ -7,6 +7,12 @@
     <title>登录</title>
 </head>
 <body>
+@if(!empty(session('msg')))
+    <div class="alert alert-msg“ role="alert:>
+        {{session('msg')}}
+    </div>
+    @endif
+
 <form action="{{url('/user/loginDo')}}" method="post">
   <table>
       <tr>
@@ -17,10 +23,12 @@
           <td>密码</td>
           <td><input type="password" name="password"></td>
       </tr>
+      <!--
       <tr>
           <td>确认密码</td>
           <td><input type="password" name="pwd"></td>
       </tr>
+      -->
       <tr>
           <td></td>
           <td>
