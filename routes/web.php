@@ -45,7 +45,9 @@ Route::post('user/registerDo','index\UserController@registerDo');// 执行注册
 
 /** 用户的登录*/
 Route::get('user/login','index\UserController@login');// 登录视图
+Route::get('user/center','index\UserController@login');// 请先登录
 Route::post('user/loginDo','index\UserController@loginDo');// 执行登录
+Route::get('exit','index\UserController@edit');//退出
 
 
 /** 商品*/

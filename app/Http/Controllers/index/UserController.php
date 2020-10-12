@@ -16,6 +16,7 @@ class UserController extends Controller{
     /** 执行注册*/
     public function registerDo(Request $request){
         $data = $request->except('_token');
+//        dd($data);
         $data['reg_time'] = time();// 注册时间
         $data['password'] = md5($data['password']);// 密码加密
         $res = UserModel::insert($data);
@@ -40,9 +41,9 @@ class UserController extends Controller{
         $count = Redis::get($key);
 //        echo $count;exit;
         //echo '密码错误次数：'.$count;die;
-        if ($count>=4) {
-            return redirect('/user/login')->with('msg','错误次数过多，已被锁定一小时');
-        }
+//        if ($count>=4) {
+//            return redirect('/user/login')->with('msg','错误次数过多，已被锁定一小时');
+//        }
         //$user_pass = $request->input('user_pass');
         /*if(substr_count($user_name['user_name'],'@')>0){
             if(substr_count($user_name['user_name'],'@')>0){
@@ -66,13 +67,26 @@ class UserController extends Controller{
         if(is_object($res)){
             $res = $res->toArray();
         }
-//        dd($res);
+        // 打印出用户剩余的时间
+        $login_time = ceil(Redis::TTL("login_time:".$res['uid'])/60);
+//        dd($login_time);
+        if(!empty($login_time)){
+            return redirect('user/login')->with(['msg'=>'该账户密码输入错误过多,已锁定一小时,剩余时间'.$login_time.'分钟']);
+        }
+        // 判断用户是否已经锁定
+        if($count>=4){
+            Redis::setex("login_time:".$res['uid'],3600,Redis::get("login_time:".$res['uid']));
+            return redirect('user/login')->with(['msg'=>'该账号输入错误次数过多，已锁定一小时']);
+        }
         $user_name1=$request->input('password');
 //        echo $user_name1;exit;
         $user_name1 = md5($user_name1);
         if($user_name1==$res['password']){
             $loginInfo = ['last_login'=>time(),'last_ip'=>$ip,'login_count'=>$res['login_count']+1];
             UserModel::where('uid',$res['uid'])->update($loginInfo);
+            // 用户登录成功后设置session存入用户的信息
+            session(['uid'=>$res['uid'],'user_name'=>$res['user_name'],'tel'=>$res['tel'],'email'=>$res['email']]);
+            // 使用重定向放回视图
             return redirect('user/login');
         }else{
             $ten_minute = 10 * 60;//
@@ -107,6 +121,14 @@ class UserController extends Controller{
 
 
 
+    }
+    // 退出
+    public function exit(Request $request){
+        session(['uid'=>null,'user_name'=>null,'tel'=>null,'email'=>null]);
+        $uid = $request->session()->get('uid');
+        if(empty($uid)){
+            return redirect('user/login')->when(['msg'=>'退出成功']);
+        }
     }
 }
 
