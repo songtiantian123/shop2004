@@ -1,7 +1,4 @@
-<?php
-    session_start();// 开启session
-    if(isset($_SESSION['uid'])){
-        echo '欢迎回来：'.$_SESSION['user_name'];
-    }else{
-        echo '请先登录';
-    }
+<h4>用户中心</h4>
+
+
+<h6><a href="#">退出</a></h6>
