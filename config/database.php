@@ -134,7 +134,12 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
         ],
-        
+        'session' =>[
+            'host' => env('SESS_REDIS_HOST','127.0.0.1'),
+            'password' => env('SESS_REDIS_PASSWPRD',NULL),
+            'PORT' => env('SESS_REDIS_PORT',6379),
+            'database' =>0,
+        ],
 
         'cache' => [
             'url' => env('REDIS_URL'),
